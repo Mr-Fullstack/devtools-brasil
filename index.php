@@ -12,7 +12,7 @@
         <script src="assets/js/functions.js"></script>
         <title>Dev Tools Brasil</title>
     </head>
-    <body>
+    <body>     
         <nav class="menu-mobile">
             <form action="" class="form-menu">
                 <input type="search" name="pesquisa" id="" placeholder="pesquisar">
