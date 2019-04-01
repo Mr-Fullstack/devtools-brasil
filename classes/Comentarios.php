@@ -10,24 +10,30 @@ class Comentarios{
 
     private static $data;
 
-    public static function comentar($data){
-        $sql=Mysql::conectar()->prepare("INSERT INTO comentarios(id_post,nome,email,comentario) values (?,?,?,?)");
-        if($sql->execute($data)){
+    public static function comentar ( $data ) {
+        $sql=Mysql::conectar()->prepare( " INSERT INTO comentarios(id_post,nome,email,comentario) values (?,?,?,?) " );
+        if ( $sql->execute( $data ) )
+        {
             echo 'comentário feito com sucesso';
             return true;
-          }else{
+        }
+        else
+        {
             return false;
-          }
+        }
     }
 
-    public static function pegarComentario($id){
-      $sql=Mysql::conectar()->prepare("SELECT * FROM comentarios WHERE id_post = $id");
-      if($sql->execute()){
-        $linhas=$sql->fetchAll(PDO::FETCH_OBJ);
+    public static function pegarComentario ( $id ) {
+      $sql=Mysql::conectar()->prepare( " SELECT * FROM comentarios WHERE id_post = $id " );
+      if ( $sql->execute() ) 
+      {
+          $linhas = $sql->fetchAll( PDO::FETCH_OBJ );
           return $linhas;
-        }else{
+      }
+      else
+      {
           return false;
-        }
+      }
   }
 
 }

@@ -22,35 +22,25 @@ $blog= new Admin;
                 <?php
                 
                 $linhas=$blog->admins('listUsers','');
-                if($linhas != 0){
-                    foreach($linhas as $values){
-                    $cargo=$values->cargo;  
-                        if($_SESSION['cargo'] < $cargo){         
+                if ( $linhas != 0 )
+                {
+                    foreach ( $linhas as $values )
+                    {
+                        $cargo=$values->cargo;  
+                        if ( $_SESSION [ 'cargo' ] < $cargo ) 
+                        {         
                 ?>
                     <tr> 
                         <td> <?php echo $values->id_usuario; ?> </td>
                         <td> <?php echo$values->nome; ?> </td>
                         <td> <?php echo$values->email; ?> </td>
-                        <td> <?php pegaCargo($cargo); ?> </td>
+                        <td> <?php echo pegaCargo($cargo); ?> </td>
                         <td class='txcenter'> nenhuma ação</td>
                     </tr>
-             <?php }elseif($_SESSION['cargo'] > $cargo){?>
-                    <tr> 
-                        <td> <?php echo $values->id_usuario; ?> </td>
-                        <td> <?php echo $values->nome; ?> </td>
-                        <td> <?php echo $values->email; ?> </td>
-                        <td> <?php pegaCargo($cargo); ?> </td>
-                        <td class='txcenter'><a href='list-users?acao=excluir_user&id=<?=$values->id_usuario?>'>excluir</a></td>
-                    </tr>
-                <?php }elseif($values->id_usuario == $_SESSION['id']){?>
-                    <tr> 
-                        <td class='self'> <?php echo $values->id_usuario; ?> - você </td>
-                        <td class='self'> <?php echo $values->nome; ?> </td>
-                        <td class='self'> <?php echo $values->email; ?> </td>
-                        <td class='self'> <?php pegaCargo($cargo); ?> </td>
-                        <td class='self txcenter'> nenhuma ação</td>
-                    </tr>
-                <?php }elseif( ($_SESSION['cargo'] == 2) && ($values->id_usuario != $_SESSION['id'])){?>
+
+                  <?php }
+                        else if ( $_SESSION [ 'cargo' ] > $cargo || ( ( $_SESSION[ 'cargo' ] == 2) || ( $_SESSION [ 'cargo' ] == 1) )  && ( $values->id_usuario != $_SESSION ['id'] ) )
+                        {?>
                     <tr> 
                         <td> <?php echo $values->id_usuario; ?> </td>
                         <td> <?php echo $values->nome; ?> </td>
@@ -58,23 +48,37 @@ $blog= new Admin;
                         <td> <?php echo pegaCargo($cargo); ?> </td>
                         <td class='txcenter'><a href='list-users?acao=excluir_user&id=<?=$values->id_usuario?>'>excluir</a></td>
                     </tr>
-                    <?php }elseif( ($_SESSION['cargo'] == $cargo) && ($values->id_usuario != $_SESSION['id'])){?> 
+                  <?php }
+                        else if ( $values->id_usuario == $_SESSION [ 'id' ] )
+                        {?>
+                    <tr> 
+                        <td class='self'> <?php echo $values->id_usuario; ?> - você </td>
+                        <td class='self'> <?php echo $values->nome; ?> </td>
+                        <td class='self'> <?php echo $values->email; ?> </td>
+                        <td class='self'> <?php echo pegaCargo($cargo); ?> </td>
+                        <td class='self txcenter'> nenhuma ação</td>
+                    </tr>
+                  <?php }
+                        else if( ( $_SESSION [ 'cargo' ] == $cargo) && ( $values->id_usuario != $_SESSION [ 'id']  ) )
+                        {?> 
                     <tr> 
                         <td> <?php echo $values->id_usuario; ?></td>
                         <td> <?php echo $values->nome; ?></td>
                         <td> <?php echo $values->email; ?></td>
-                        <td> <?php pegaCargo($cargo); ?></td>
+                        <td> <?php echo pegaCargo($cargo); ?></td>
                         <td class='txcenter'> nenhuma ação</td>
                     </tr>  
-                <?php } 
+                  <?php } 
+                    }
                 }
-            }else{?>
-                <tr>
-                    <td colspan='5' class='txcenter'>
-                    <i class='fas fa-times'></i>
-                    <h5>nenhumma usuario foi encontrado</h5> 
-                    </td>
-                </tr>
+                else
+                {?>
+                    <tr>
+                        <td colspan='5' class='txcenter'>
+                        <i class='fas fa-times'></i>
+                        <h5>nenhumma usuario foi encontrado</h5> 
+                        </td>
+                    </tr>
             <?php }?>     
                 </tbody>
                 </table>

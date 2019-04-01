@@ -12,7 +12,7 @@
 
     //autoload simples
     $autoload=function($class){
-        include_once('classes/'.$class.'.php'); 
+        include_once('Classes/'.$class.'.php'); 
     };
     spl_autoload_register($autoload);
 
@@ -87,7 +87,66 @@ function pegaRetorno($retorno){
     }
 
 }
+
+define('DIA',( int ) date ( 'd' ) );
+define('MES',( int ) date ( 'm' ) );
+define('ANO',( int ) date ( 'Y' ) );
+
+function getDataLast ( int $dia, int $mes, int $ano ) { 
+
+if ($dia == 01 AND $mes == 01 )
+{
+    $ano = $ano--;
+    $dia = 31;
+    $mes = 12;
+    return $datelast = "$ano-$mes-$dia" ;
+}
+else
+{
+    $dia = $dia--; 
+    return $datelast = "$ano-$mes-$dia" ;
+}
+
+}
+
+
+function getDataNext ( int $dia, int $mes, int $ano ) { 
+    
+    $date;
+
+    if ( $dia == 31 AND  $mes == 12 )
+    {
+        $ano++;
+        $mes = 01;
+        $dia = 01;
+        return $date = "$ano-$mes-$dia ";
+    }
+    else
+    {   
+        $dia++;
+        $mes="0".$mes;
+        return $date = "$ano-$mes-$dia"; 
+    }
+    
+}
+
+function getDataNow (  int $dia,  int $mes,  int $ano ) { 
+
+    return $dateNow = "$dia-$mes-$ano";
+    
+}
+
+
+
 pegaRetorno($retorno);
+
+function convertDate($date){
+    $ano=substr($date,0,4);
+    $mes=substr($date,5,-3);
+    $dia=substr($date,8,2);
+    $data="$dia/$mes/$ano";
+    return $data;
+}
 
 function pegaCargo($cargo){
 

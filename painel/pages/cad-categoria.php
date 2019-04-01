@@ -26,8 +26,10 @@
                     <?php
                     $blog= new Categorias;
                     $linhas=$blog->categoria('listCategoria','');
-                    if($linhas != 0){
-                        foreach($linhas as $row){
+                    if ( $linhas != 0 ) 
+                    {
+                        foreach ( $linhas as $row )
+                        {
                     ?>        
                     <tr> 
                         <td><?=$row->nome_categoria?></td>
@@ -38,14 +40,16 @@
                         </td>
                     </tr>
                     <?}
-                    }else{?>
+                    }
+                    else
+                    {?>
                         <tr>
                         <td colspan='4' class='txcenter'>
                         <i class='fas fa-times'></i>
                         <h5>nenhumma categoria foi encontrada</h5> 
                         </td>
                         </tr>
-                    <?}?>
+                  <?}?>
                 </tbody>
                 </table>
             </div>

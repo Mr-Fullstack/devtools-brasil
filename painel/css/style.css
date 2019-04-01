@@ -96,6 +96,8 @@ background-color: #00ff1567;
     text-shadow:none;
 }
 
+
+
 .danger{
     background-color: #ff0000;
 }
@@ -230,19 +232,29 @@ select,option{
     width:50% ;
 }
 
-.pendente{
+table td.txtlist{
+    color: #65538c;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+table td.pendente{
     background-color: rgb(224, 157, 55);
+    
+}
+table td.status{
     color: #fff;
+    text-transform: uppercase;
+    font-size: 10px; 
 }
 
-.concluido{
+table td.concluido{
  background-color: green;
- color: #fff;
 }
 
-.aguardando{
+table td.aguardando{
     background-color: rgb(88, 77, 243);
-    color: #fff;
+ 
 }
 
 .w100{

@@ -6,39 +6,41 @@ class Admin extends Crud {
     private  $data;
     private  $acao;
     
-    public function admins($acao,$dados){
+    public function admins ( $acao,$dados ) {
 
-        switch ($acao){
+        switch ( $acao )
+        {
             case 'create':
-            parent::createAdmin($dados);
+            parent::createAdmin( $dados );
             return true;
             break;
+
             case 'read':
-            parent::readAdmin($dados);
+            parent::readAdmin( $dados );
             return true;
             break;
 
             case 'update':
-            parent::updateAdmin($this->id,$dados);
+            parent::updateAdmin( $this->id, $dados );
             return true;
             break;
 
             case 'listUsers':
-            return parent::listAdmin($dados);
+            return parent::listAdmin( $dados );
             break;
 
             case 'delete':
-            parent::deleteAdmin($this->id);
+            parent::deleteAdmin( $this->id );
             return true;
             break;
 
             case 'select':
-            return parent::selectAdmin($this->id);
+            return parent::selectAdmin( $this->id );
             break;
         }
     }
 
-    public function setId($id){
+    public function setId ( $id ) {
         $this->id=$id;
     }
 }

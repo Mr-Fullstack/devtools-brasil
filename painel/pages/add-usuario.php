@@ -16,15 +16,17 @@
             <label for="">Tipo:</label>
             <select class="w100" name="tipo">
                 <?php
-                $tipo=[
+                $tipo = 
+                [
                     '0'=> 'normal',
                     '1'=> 'Sub Administrador',
                     '2'=> 'Administrador'
                 ];                  
-                foreach($tipo as $key => $value){
+                foreach ( $tipo as $key => $value )
+                {
                 ?>
-                <option value="<?php echo $key ?>"><?php echo $value ?></option>
-                <?php  }?>
+                <option value="<?php echo $key; ?>"><?php echo $value; ?></option>
+         <?php  }?>
                 
             </select>
             <input type="hidden" name="acao"value="cadastrar">

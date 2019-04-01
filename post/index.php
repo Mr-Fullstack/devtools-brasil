@@ -16,23 +16,28 @@ $comentarios= new Comentarios;
 <body>     
     <?php
             $posts=$blog->posts('read',"WHERE status_post='concluido'");
-            $date=date('d-m-Y');
+            
             if ( $posts != 0 )
             {
-                foreach ( $posts as $post ) 
+                foreach ( $posts as $post )
                 {
+                    $ano = substr( $post->date_post,0,4 );
+                    $mes = substr( $post->date_post,5,-3 );
+                    $dia = substr( $post->date_post,8,2 );
+                    $dateNow = date( 'd/m/Y' );
+                    $diaNow = date( 'd' );
+                    $data = "$dia/$mes/$ano";
     ?>
         <h1><?php echo $post->title_post?></h1><br>
-        <h4>Data: <?php if($post->date_post === $date) echo 'postado hoje'; else echo $post->date_post; ?></h4>
+        <h4>Data: <?php if ( $data === $dateNow ) echo 'postado hoje'; else echo $data; ?></h4>
         <h3>Instrutor: <?php echo $post->instrutor_post?></h3>
         <video src='www.youtube.com/watch?v=<?php echo $post->code_video?>'></video>
         <h3>Autor: <?php echo $post->autor_post?></h3>
         <h3>duração:<?php echo $post->minutos_video?>min</h3>
         <h3><?php echo $post->corpo_post?></h3> 
-         
         <h2>Comentarios:</h2> 
         <?php
-                    $linhas=$comentarios->pegarComentario($post->id_post);
+                    $linhas = $comentarios->pegarComentario( $post->id_post );
                     foreach ( $linhas as $comentario ) 
                     {
         ?>
@@ -41,8 +46,9 @@ $comentarios= new Comentarios;
                  <? }?> 
              <?}?> 
         <?}
-          else{?>
+          else
+          {?>
         <h4> Desculpe, nenhum post para ser exibido.</h4>
-           <? } ?>
+       <? } ?>
 </body>
 </html>
